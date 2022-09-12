@@ -4,8 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import classes from "./Auth.module.css";
 import AuthContext from "../context/auth-context";
 import Loading from "./Loading";
+import config from "../apikey";
 
 const Auth = (props) => {
+  const apikey = config.apikey;
+
   const history = useNavigate();
 
   const authCtx = useContext(AuthContext);
@@ -29,10 +32,10 @@ const Auth = (props) => {
     let url;
     if (isLogin) {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB5n5Te8o0UoYv61yOYLA-JSngrFzxKDSM";
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apikey}`;
     } else {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB5n5Te8o0UoYv61yOYLA-JSngrFzxKDSM";
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apikey}`;
     }
     fetch(url, {
       method: "POST",
